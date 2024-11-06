@@ -5,8 +5,6 @@
 package parkmaster.model;
 
 import java.time.LocalDateTime;
-import java.util.Date;
-import parkmaster.service.AuthenticationService;
 
 /**
  *
@@ -21,7 +19,7 @@ public abstract class User extends BaseEntity{
     protected LocalDateTime lastLogin;
     protected LocalDateTime lastPasswordReset;
     protected int failedLoginAttempts;
-    private boolean isLocked = false;
+    private boolean accountLocked = false;
 
     
     public void increaseFailedLoginAttempts() {
@@ -33,16 +31,16 @@ public abstract class User extends BaseEntity{
     }
     
     public void lockAccount() {
-        this.isLocked = true;
+        this.accountLocked = true;
     }
 
     public void unlockAccount() {
-        this.isLocked = false;
+        this.accountLocked = false;
         resetFailedLoginAttempts();
     }
 
     public boolean isLocked() {
-        return isLocked;
+        return accountLocked;
     }
 
     public void setPhoneNumber(String phoneNumber) {
@@ -87,6 +85,14 @@ public abstract class User extends BaseEntity{
 
     public int getFailedLoginAttempts() {
         return failedLoginAttempts;
+    }
+
+    public boolean isAccountLocked() {
+        return accountLocked;
+    }
+
+    public void setAccountLocked(boolean accountLocked) {
+        this.accountLocked = accountLocked;
     }
     
 }

@@ -4,8 +4,8 @@
  */
 package parkmaster.service;
 
+import java.sql.SQLException;
 import java.time.LocalDateTime;
-import java.util.Date;
 import parkmaster.model.User;
 import parkmaster.util.SystemLogs;
 
@@ -14,6 +14,11 @@ import parkmaster.util.SystemLogs;
  * @author rolas
  */
 public class UserService {
+    private final SystemLogs log;
+
+    public UserService() throws SQLException {
+        this.log = new SystemLogs();
+    }
     
     /**
      * Edita o perfil do utilizador com novos dados.
@@ -29,7 +34,7 @@ public class UserService {
         user.setPassword(password);
         user.setLastPasswordReset(LocalDateTime.now());
         
-        SystemLogs.recordAction(user.getId(), "Edit Profile", LocalDateTime.now());
+        log.recordAction(user.getId(), "Edit Profile", LocalDateTime.now());
         System.out.println("Perfil actualizado para o utilizador: " + user.getEmail());
     }
 
@@ -43,7 +48,7 @@ public class UserService {
         user.setPassword(newPassword);
         user.setLastPasswordReset(LocalDateTime.now());
 
-        SystemLogs.recordAction(user.getId(), "Password Reset", LocalDateTime.now());
+        log.recordAction(user.getId(), "Password Reset", LocalDateTime.now());
         System.out.println("Password redefinida para o utilizador: " + user.getEmail());
     }
 }

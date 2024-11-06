@@ -4,6 +4,7 @@
  */
 package parkmaster.controller;
 
+import java.sql.SQLException;
 import java.util.Date;
 import parkmaster.model.Admin;
 import parkmaster.model.User;
@@ -16,7 +17,11 @@ import parkmaster.util.SystemLogs;
  * @author rolas
  */
 public class AdminController {
-    private final AuthenticationService authService = new AuthenticationService();
+    private final AuthenticationService authService;
+
+    public AdminController() throws SQLException {
+        this.authService = new AuthenticationService();
+    }
 
     /**
      * Cria a conta do Administrador do Sistema.

@@ -4,6 +4,7 @@
  */
 package parkmaster.util;
 
+import java.sql.SQLException;
 import java.time.LocalDateTime;
 import parkmaster.dao.SystemLogDAO;
 
@@ -12,10 +13,15 @@ import parkmaster.dao.SystemLogDAO;
  * @author rolas
  */
 public class SystemLogs {
+    private final SystemLogDAO logDAO;
 
-    public static void recordAction(int id, String actionType, LocalDateTime date) {
+    public SystemLogs() throws SQLException {
+        this.logDAO = new SystemLogDAO();
+    }
+
+    public void recordAction(int id, String actionType, LocalDateTime date) {
         System.out.println("User ID: " + id + ", Action: " + actionType + ", Date: " + date);
-        SystemLogDAO.save(id, actionType, date);
+        logDAO.save(id, actionType, date);
     }
     
 }

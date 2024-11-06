@@ -4,19 +4,16 @@
  */
 package parkmaster.controller;
 
-import java.util.Date;
 import parkmaster.model.ParkingLot;
 import parkmaster.model.ParkingManager;
 import parkmaster.service.AuthenticationService;
-import parkmaster.session.Session;
-import parkmaster.util.SystemLogs;
 
 /**
  *
  * @author rolas
  */
 public class ParkingManagerController {
-    private final AuthenticationService authService = new AuthenticationService();
+    private final AuthenticationService authService = null;
     
     public boolean login(String email, String password) {
         ParkingManager manager = findManagerByEmail(email);
@@ -28,7 +25,7 @@ public class ParkingManagerController {
     }
 
     public void manageParkingLot(ParkingManager manager, ParkingLot lot) {
-        manager.manageParkingLot();
+//        manager.manageParkingLot();
         // Lógica para permitir que o manager faça mudanças no parque
     }
 
